@@ -43,6 +43,27 @@ int main(void)
         {
             wc += 0;
         }
+        else if (f == 39)
+        {
+            wc += 0;
+        }
+        else if (f == 45)
+        {
+            wc += 0;
+            f = s [0][N - 1];
+            if (f >= 65 && f <= 90)
+            {
+                wc += 0;
+            }
+            else if (f >= 97 && f <= 122)
+            {
+                wc += 0;
+            }
+            else
+            {
+                wc += 1;
+            }
+        }
         else
         {
             wc += 1;
@@ -51,7 +72,7 @@ int main(void)
             {
                 wc += 0;
             }
-            if (f >= 97 && f <= 122)
+            else if (f >= 97 && f <= 122)
             {
                 wc += 0;
             }
@@ -96,6 +117,7 @@ int main(void)
         }
         N = N + 1;
         f = 0;
+
     }
     double L = (count * (100 / wc));
     double S = (sc * (100 / wc));
@@ -104,6 +126,7 @@ int main(void)
     //substitution in the formula
     index = (round(index));
     //rounding index
+
 
     if (index <= 1.5)
     {
