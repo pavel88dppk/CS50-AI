@@ -64,12 +64,12 @@ int main(void)
         }
         else
         {
-            printf("invalid card\n");
+            printf("INVALID\n");
         }
     }   
     else
     {
-        printf("invalid card\n");
+        printf("INVALID\n");
     }
 
 }
