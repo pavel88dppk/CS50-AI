@@ -52,15 +52,15 @@ int main(void)
    
         if (amex)
         {
-            printf("valid amex\n");
+            printf("AMEX\n");
         }
         else if (master_card)
         {
-            printf("valid Master card\n");
+            printf("MASTERCARD\n");
         }
         else if (visa)
         {
-            printf("valid visa\n");
+            printf("VISA\n");
         }
         else
         {
