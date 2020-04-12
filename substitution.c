@@ -4,13 +4,13 @@
 #include <ctype.h>
 
 int main(int argc, string argv[])
+
 {
     if (argc != 2)
     {
         printf("incorrect key\n");
         return 1;
     }
-
     for (int i = 0, n = strlen(argv[1]); i < n; i++)
     {
         if (!isalpha(argv[1][i]))
@@ -19,16 +19,12 @@ int main(int argc, string argv[])
             return 1;
         }
     }
-
-   
     int sl = strlen(argv[1]);
     if (sl <= 25)
     {
         printf("incorrect key\n");
         return 1;
     }
-
-  
     int count = 0;
     int cnt = 0;
     for (int i = 0; i < sl; i++)
@@ -50,8 +46,6 @@ int main(int argc, string argv[])
     }
     string plaintext = get_string("plaintext: ");
     printf("ciphertext: ");
-
-   
     int txtin = strlen(plaintext);
     for (int q = 0; q < txtin; q++)
     {
@@ -67,7 +61,6 @@ int main(int argc, string argv[])
                 {
                     char let1 = argv[1][m] + 32;
                     printf("%c", let1);
-                    //making it capital
                 }
             }
             else if (plaintext[q] == 'A' + m)
@@ -90,4 +83,5 @@ int main(int argc, string argv[])
         }
     }
     printf("\n");
+    return 0;
 }
