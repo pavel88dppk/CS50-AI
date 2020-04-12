@@ -22,7 +22,7 @@ int main(int argc, string argv[])
 
    
     int sl = strlen(argv[1]);
-    if (sl < 26)
+    if (sl <= 25)
     {
         printf("incorrect key\n");
         return 1;
@@ -30,12 +30,12 @@ int main(int argc, string argv[])
 
   
     int count = 0;
-    
+    int cnt = 0;
     for (int i = 0; i < sl; i++)
     {
         for (int N = 0; argv[1][N] != '\0'; N++)
         {
-            N += 1;
+            cnt++;
             if (argv[1][N] == argv[1][i])
             {
                 count++;
