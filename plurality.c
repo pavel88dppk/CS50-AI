@@ -71,13 +71,13 @@ int main(int argc, string argv[])
 bool vote(string name)
 {
     // TODO
-    for(int i = 0; i < candidate_count; i++)
+    for (int i = 0; i < candidate_count; i++)
     {
-        if (strcmp(name,candidates[i].name) == 0)
-            {
-                candidates[i].votes += 1;
-                return true;
-            }
+        if (strcmp(name, candidates[i].name) == 0)
+        {
+            candidates[i].votes += 1;
+            return true;
+        }
     }
     return false;
 
@@ -110,19 +110,19 @@ void print_winner(void)
                 {
                     c += 1;
                 }
-                else if(candidates[i].votes == candidates[i].votes)
+                else if (candidates[i].votes == candidates[i].votes)
                 {
                     c += 1;
                 }
-                else if(candidates[i].votes < candidates[i + n].votes)
+                else if (candidates[i].votes < candidates[i + n].votes)
                 {
                     return;
                 }
-                }
+            }
 
             if (c == h)
             {
-                printf("%s\n",candidates[i].name);
+                printf("%s\n", candidates[i].name);
             }
             if (i > 0 && (n + i) == h)
             {
