@@ -150,7 +150,7 @@ void tabulate(void)
         for (int rate = 0; rate < candidate_count; voter++)
         if (preferences[voter][rate] == voter)
         {
-            if ((candidates[preferences[voter][rate]].eliminated) == 1)
+            if ((candidates[preferences[voter][rate]].eliminated) == false)
             {
                 break;
             }
@@ -232,7 +232,7 @@ void eliminate(int min)
     {
         if (min == candidates[i].votes)
         {
-            candidates[i].eliminated = 1;
+            candidates[i].eliminated = true;
         }
     }
     
