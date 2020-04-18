@@ -76,7 +76,7 @@ int main(int argc, string argv[])
             if (!vote(i, j, name))
             {
                 printf("Invalid vote.\n");
-                return false;
+                return 4;
             }
         }
 
@@ -129,15 +129,17 @@ int main(int argc, string argv[])
 bool vote(int voter, int rank, string name)
 {
     // TODO
+    bool e = false;
     for (int i = 0; i < voter_count; i++)
     {
         if (strcmp(name,candidates[i].name) == 0)
         {
             preferences[voter][rank] = i;
-            return true;
+            e = true;
+            break;
         }
     }
-    return false;
+    return e;
 }
 
 // Tabulate votes for non-eliminated candidates
@@ -167,28 +169,21 @@ bool print_winner(void)
     {
         if (candidate_count % 2 == 0)
         {
-            if (candidates[i].votes >= (candidate_count * 0.5 + 1 ))
+            if (candidates[i].votes > (candidate_count * 0.5))
             {
                 printf("%s\n", candidates[i].name);
                 return true;
-            }
-            else
-            {
-                return false;
             }
         }
         else if (candidate_count % 2 == 1)
         {
-            if (candidates[i].votes >= ((candidate_count + 1) * 0.5))
+            if (candidates[i].votes > (candidate_count * 0.5))
             {
                 printf("%s\n", candidates[i].name);
                 return true;
             }
-            else
-            {
-                return false;
-            }
         }
+        
     }
     return false;
 }
