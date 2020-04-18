@@ -129,17 +129,15 @@ int main(int argc, string argv[])
 bool vote(int voter, int rank, string name)
 {
     // TODO
-    bool exists = false;
     for (int i = 0; i < voter_count; i++)
     {
-        if (strcmp(name,candidates[i].name) == 0)
+        if (! strcmp(name,candidates[i].name))
         {
             preferences[voter][rank] = i;
-            exists =  true;
-            break;
+            return true;
         }
     }
-    return exists;
+    return false;
 }
 
 // Tabulate votes for non-eliminated candidates
@@ -150,11 +148,11 @@ void tabulate(void)
     {
         for (int rate = 0; rate < candidate_count; vote++)
         {
-            if(candidates[preferences[vote][rate]].eliminated == false )
+            while (candidates[preferences[vote][rate]].eliminated == true)
             {
-                candidates[preferences[vote][rate]].votes += 1;
-                break;
+                rate += 1;
             }
+            candidates[preferences[vote][rate]].votes += 1;
         }
     }
     return;
