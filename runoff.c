@@ -171,26 +171,18 @@ bool print_winner(void)
     {
         if (candidate_count % 2 == 0)
         {
-            if (candidates[i].votes >= candidate_count/ 2 + 1)
+            if (candidates[i].votes >= (candidate_count/2) + 1)
             {
                 printf("%s\n", candidates[i].name);
                 return true;
             }
-            else
-            {
-                return false;
-            }
         }
-        else
+        else if (candidate_count % 2 == 1)
         {
             if (candidates[i].votes >= ((candidate_count + 1)/2))
             {
                 printf("%s\n", candidates[i].name);
                 return true;
-            }
-            else
-            {
-                return false;
             }
         }
     }
@@ -213,16 +205,16 @@ int find_min(void)
             if (i == 0)
             {
                 min = candidates[i].votes;
-            }   
+            }
             else
             {
                 if (candidates[i].votes < min)
-                {   
+                {
                     min = candidates[i].votes;
                 }
             }
         }
-       
+
     }
     return min;
 }
