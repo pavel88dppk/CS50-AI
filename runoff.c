@@ -163,17 +163,17 @@ void tabulate(void)
 bool print_winner(void)
 {
     // TODO
-    int half = candidate_count / 2;
-    bool winner;
+    int half = (candidate_count / 2);
+    bool winner = false;
     for (int i = 0; i < candidate_count; i++)
     {
         if (candidates[i].votes > half)
         {
             winner = true;
             printf("%s\n", candidates[i].name);
-            return true;
+            return winner;
         }
-    
+
     }
     return false;
 }
