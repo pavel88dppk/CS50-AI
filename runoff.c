@@ -76,7 +76,7 @@ int main(int argc, string argv[])
             if (!vote(i, j, name))
             {
                 printf("Invalid vote.\n");
-                return false;
+                return 4;
             }
         }
 
@@ -136,8 +136,11 @@ bool vote(int voter, int rank, string name)
             preferences[voter][rank] = i;
             return true;
         }
+        else
+        {
+            return false;
+        }
     }
-
     return false;
 }
 
@@ -180,7 +183,6 @@ bool print_winner(void)
             {
                 printf("%s\n", candidates[i].name);
                 return true;
-
             }
         }
     }
@@ -206,7 +208,7 @@ int find_min(void)
             }
         }
     }
-    return 0;
+    return min;
 }
 
 // Return true if the election is tied between all candidates, false otherwise
