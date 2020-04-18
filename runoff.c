@@ -175,15 +175,6 @@ bool print_winner(void)
                 return true;
             }
         }
-        else if (candidate_count % 2 == 1)
-        {
-            if (candidates[i].votes > (candidate_count * 0.5))
-            {
-                printf("%s\n", candidates[i].name);
-                return true;
-            }
-        }
-        
     }
     return false;
 }
