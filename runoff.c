@@ -142,7 +142,8 @@ bool vote(int voter, int rank, string name)
         
         }
     }
-    return false;
+    tru = false;
+    return tru;
 }
 
 // Tabulate votes for non-eliminated candidates
@@ -168,15 +169,15 @@ void tabulate(void)
 bool print_winner(void)
 {
     // TODO
-    int half = (candidate_count / 2);
-    bool winner = false;
+    int half = (voter_count / 2);
+    
     for (int i = 0; i < candidate_count; i++)
     {
-        string name = candidates[i].name;
+        bool winner = false;
         if (candidates[i].votes > half)
         {
             winner = true;
-            printf("%s\n", name);
+            printf("%s\n", candidates[i].name);
             return winner;
         }
 
