@@ -76,7 +76,7 @@ int main(int argc, string argv[])
             if (!vote(i, j, name))
             {
                 printf("Invalid vote.\n");
-                return 4;
+                return false;
             }
         }
 
@@ -172,6 +172,10 @@ bool print_winner(void)
                 printf("%s\n", candidates[i].name);
                 return true;
             }
+            else
+            {
+                return false;
+            }
         }
         else if (candidate_count % 2 == 1)
         {
@@ -179,6 +183,10 @@ bool print_winner(void)
             {
                 printf("%s\n", candidates[i].name);
                 return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }
