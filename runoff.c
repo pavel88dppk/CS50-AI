@@ -136,6 +136,10 @@ bool vote(int voter, int rank, string name)
             preferences[voter][rank] = i;
             return true;
         }
+        else
+        {
+            return false;
+        }
     }
     return false;
 }
@@ -167,10 +171,11 @@ bool print_winner(void)
     bool winner = false;
     for (int i = 0; i < candidate_count; i++)
     {
+        string name = candidates[i].name;
         if (candidates[i].votes > half)
         {
             winner = true;
-            printf("%s\n", candidates[i].name);
+            printf("%s\n", name);
             return winner;
         }
 
