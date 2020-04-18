@@ -171,7 +171,7 @@ bool print_winner(void)
     {
         if (candidate_count % 2 == 0)
         {
-            if (candidates[i].votes >= (candidate_count/2) + 1)
+            if (candidates[i].votes >= ((candidate_count/2) + 1))
             {
                 printf("%s\n", candidates[i].name);
                 return true;
