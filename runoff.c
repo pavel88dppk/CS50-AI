@@ -129,21 +129,19 @@ int main(int argc, string argv[])
 bool vote(int voter, int rank, string name)
 {
     // TODO
-    bool tru = true;
-    while (tru == true)
-    {
-        for (int i = 0; i < voter_count; i++)
-        {
-            if (! strcmp(name,candidates[i].name))
-            {   
-                preferences[voter][rank] = i;
-                return tru;
-            }
-        
-        }
-    }
-    tru = false;
-    return tru;
+   for (int i = 0; i < voter_count; i++)
+   {
+       if (! strcmp(name, candidates[i].name))
+       {
+           return false;
+       }
+       else
+       {
+           preferences[voter][rank] = i;
+           return true;
+       }
+   }
+   return false;
 }
 
 // Tabulate votes for non-eliminated candidates
