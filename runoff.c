@@ -133,12 +133,13 @@ bool vote(int voter, int rank, string name)
    {
        if (! strcmp(name, candidates[i].name))
        {
-           return false;
+           preferences[voter][rank] = i;
+           break;
        }
        else
        {
-           preferences[voter][rank] = i;
-           return true;
+           
+           return false;
        }
    }
    return false;
@@ -168,7 +169,7 @@ bool print_winner(void)
 {
     // TODO
     int half = (voter_count / 2);
-    
+
     for (int i = 0; i < candidate_count; i++)
     {
         bool winner = false;
