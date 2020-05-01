@@ -157,7 +157,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 sumblue = round(((image[i][n].rgbtBlue + image[i - 1][n].rgbtBlue + image[i][n + 1].rgbtBlue + image[i - 1][n + 1].rgbtBlue +
                                   image[i + 1][n + 1].rgbtBlue + image[i + 1][n].rgbtBlue) / 6.000));
                 image[i][n].rgbtRed = sumred;
-                image[i]n].rgbtGreen = sumgreen;
+                image[i][n].rgbtGreen = sumgreen;
                 image[i][n].rgbtBlue = sumblue;
             }
             else if (i == (height - 1) && n != 0 && n != (width - 1))
