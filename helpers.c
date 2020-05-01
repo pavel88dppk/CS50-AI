@@ -157,17 +157,17 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 sumblue = round(((image[i][n].rgbtBlue + image[i - 1][n].rgbtBlue + image[i][n + 1].rgbtBlue + image[i - 1][n + 1].rgbtBlue +
                                   image[i + 1][n + 1].rgbtBlue + image[i + 1][n].rgbtBlue) / 6.000));
                 image[i][n].rgbtRed = sumred;
-                image[i][n].rgbtGreen = sumgreen;
+                image[i]n].rgbtGreen = sumgreen;
                 image[i][n].rgbtBlue = sumblue;
             }
             else if (i == (height - 1) && n != 0 && n != (width - 1))
             {
-                sumred = round(((image[i][n].rgbtRed + image[i - 1][n].rgbtRed + image[i][n + 1].rgbtRed + image[i - 1][n + 1].rgbtRed + image[i][n - 1].rgbtRed + image[i - 1][n
-                                - 1].rgbtRed) / 6.000));
+                sumred = round(((image[i][n].rgbtRed + image[i - 1][n].rgbtRed + image[i][n + 1].rgbtRed + image[i - 1][n + 1].rgbtRed + image[i][n
+                                 - 1].rgbtRed + image[i - 1][n - 1].rgbtRed) / 6.000));
                 sumgreen = round(((image[i][n].rgbtGreen + image[i + 1][n].rgbtGreen + image[i][n + 1].rgbtGreen + image[i + 1][n + 1].rgbtGreen +
-                                                 image[i][n - 1].rgbtGreen + image[i + 1][n - 1].rgbtGreen) / 6.000));
+                                   image[i][n - 1].rgbtGreen + image[i + 1][n - 1].rgbtGreen) / 6.000));
                 sumblue = round(((image[i][n].rgbtBlue + image[i + 1][n].rgbtBlue + image[i][n + 1].rgbtBlue + image[i + 1][n + 1].rgbtBlue +
-                                    image[i][n - 1].rgbtBlue + image[i + 1][n - 1].rgbtBlue) / 6.000));
+                                  image[i][n - 1].rgbtBlue + image[i + 1][n - 1].rgbtBlue) / 6.000));
                 image[i][n].rgbtRed = sumred;
                 image[i][n].rgbtGreen = sumgreen;
                 image[i][n].rgbtBlue = sumblue;
@@ -175,11 +175,11 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             else if (i != 0 && i != (height - 1) && n == (width - 1))
             {
                 sumred = round(((image[i][n].rgbtRed + image[i - 1][n].rgbtRed + image[i][n - 1].rgbtRed + image[i - 1][n - 1].rgbtRed + image[i +
-                                1][n - 1].rgbtRed + image[i + 1][n].rgbtRed) / 6.000));
+                                 1][n - 1].rgbtRed + image[i + 1][n].rgbtRed) / 6.000));
                 sumgreen = round(((image[i][n].rgbtGreen + image[i - 1][n].rgbtGreen + image[i][n - 1].rgbtGreen + image[i - 1][n - 1].rgbtGreen +
-                                image[i + 1][n - 1].rgbtGreen + image[i + 1][n].rgbtGreen) / 6.000));
+                                   image[i + 1][n - 1].rgbtGreen + image[i + 1][n].rgbtGreen) / 6.000));
                 sumblue = round(((image[i][n].rgbtBlue + image[i - 1][n].rgbtBlue + image[i][n - 1].rgbtBlue + image[i - 1][n - 1].rgbtBlue +
-                                image[i + 1][n - 1].rgbtBlue + image[i + 1][n].rgbtBlue) / 6.000));
+                                  image[i + 1][n - 1].rgbtBlue + image[i + 1][n].rgbtBlue) / 6.000));
                 image[i][n].rgbtRed = sumred;
                 image[i][n].rgbtGreen = sumgreen;
                 image[i][n].rgbtBlue = sumblue;
@@ -187,14 +187,14 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             else
             {
                 sumred = round(((image[i][n].rgbtRed + image[i - 1][n].rgbtRed + image[i][n - 1].rgbtRed + image[i - 1][n - 1].rgbtRed + image[i +
-                                1][n - 1].rgbtRed + image[i + 1][n].rgbtRed + image[i + 1][n + 1].rgbtRed + image[i - 1][n + 1].rgbtRed + image[i][n + 1].rgbtRed) /
+                                 1][n - 1].rgbtRed + image[i + 1][n].rgbtRed + image[i + 1][n + 1].rgbtRed + image[i - 1][n + 1].rgbtRed + image[i][n + 1].rgbtRed) /
                                 9.000));
                 sumgreen = round(((image[i][n].rgbtGreen + image[i - 1][n].rgbtGreen + image[i][n - 1].rgbtGreen + image[i - 1][n - 1].rgbtGreen +
-                                image[i + 1][n - 1].rgbtGreen + image[i + 1][n].rgbtGreen + image[i + 1][n + 1].rgbtGreen + image[i - 1][n + 1].rgbtGreen +
-                                image[i][n + 1].rgbtGreen) / 9.000));
+                                   image[i + 1][n - 1].rgbtGreen + image[i + 1][n].rgbtGreen + image[i + 1][n + 1].rgbtGreen + image[i - 1][n + 1].rgbtGreen +
+                                   image[i][n + 1].rgbtGreen) / 9.000));
                 sumblue = round(((image[i][n].rgbtBlue + image[i - 1][n].rgbtBlue + image[i][n - 1].rgbtBlue + image[i - 1][n - 1].rgbtBlue +
-                                image[i + 1][n - 1].rgbtBlue + image[i + 1][n].rgbtBlue + image[i + 1][n + 1].rgbtBlue + image[i - 1][n + 1].rgbtBlue + image[i][n +
-                                1].rgbtBlue) / 9.000));
+                                  image[i + 1][n - 1].rgbtBlue + image[i + 1][n].rgbtBlue + image[i + 1][n + 1].rgbtBlue + image[i - 1][n + 1].rgbtBlue + image[i][n +
+                                          1].rgbtBlue) / 9.000));
                 image[i][n].rgbtRed = sumred;
                 image[i][n].rgbtGreen = sumgreen;
                 image[i][n].rgbtBlue = sumblue;
