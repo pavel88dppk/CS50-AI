@@ -33,13 +33,13 @@ int main(int argc, char *argv[])
     
     while (true)
     {    
-        size_t alreadyread = fread(buffer, sizeof (byte), 512, inpointer);
+        size_t alreadyread = fread(buffer, sizeof(byte), 512, inpointer);
         
         if (alreadyread == 0 && feof(inpointer))
         {
             break;
         }
-        fread(buffer, sizeof (byte), 512, inpointer);
+        
         if ((buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xf0) == 0xe0) && img != NULL)
         {
             i++;
