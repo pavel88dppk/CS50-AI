@@ -28,14 +28,8 @@ int main(int argc, char *argv[])
     byte buffer[512];
     
     
-    FILE *outpointer = NULL;
+    FILE *img;
     char* filename = NULL;
-    
-    
-    if (feof(inpointer))
-    {
-        fclose(outpointer);
-    }
     
     while (true)
     {    
@@ -46,18 +40,18 @@ int main(int argc, char *argv[])
             break;
         }
         fread(buffer, sizeof (byte), 512, inpointer);
-        if ((buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xf0) == 0xe0) && outpointer != NULL)
+        if ((buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xf0) == 0xe0) && img != NULL)
         {
             i++;
-            fclose(outpointer);
+            fclose(img);
         }
         if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xf0) == 0xe0)
         {
             sprintf( filename, "%03i.jpg", i);
-            outpointer = fopen (filename, "w");
+            img = fopen (filename, "w");
         }
             
-        if (outpointer != NULL)
+        if (img != NULL)
             {
                 fwrite(buffer, sizeof (byte), alreadyread, inpointer);
             }
@@ -66,7 +60,7 @@ int main(int argc, char *argv[])
     {
         if (buffer[0] != 0xff || buffer[1] != 0xd8 || buffer[2] != 0xff || (buffer[3] & 0xf0) != 0xe0)
         {
-            fclose(outpointer);
+            fclose(img);
             fclose(inpointer);
         }
     }
