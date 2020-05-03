@@ -5,6 +5,8 @@
 
 #define NULL ((void*)0)
 typedef uint8_t byte;
+
+
 int main(int argc, char *argv[])
 {
     if (argc != 2)
@@ -57,7 +59,7 @@ int main(int argc, char *argv[])
             
         if (outpointer != NULL)
             {
-                fwrite(buffer, sizeof (byte), 512, inpointer);
+                fwrite(buffer, sizeof (byte), alreadyread, inpointer);
             }
     }
     if (feof(inpointer))
