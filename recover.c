@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
     
     
     FILE *img;
-    char* filename = NULL;
+    char* filename[9];
     
     while (true)
     {    
@@ -40,14 +40,14 @@ int main(int argc, char *argv[])
             break;
         }
         
-        if ((buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xf0) == 0xe0) && img != NULL)
-        {
-            i++;
-            fclose(img);
-        }
         if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xf0) == 0xe0)
         {
-            sprintf( filename, "%03i.jpg", i);
+            i++;
+            if (i > 1)
+            {
+                fclose(img);
+            }
+            sprintf(filename, "%03i.jpg", i);
             img = fopen (filename, "w");
         }
             
@@ -56,11 +56,13 @@ int main(int argc, char *argv[])
                 fwrite(buffer, sizeof (byte), alreadyread, inpointer);
             }
     }
-    
-        
+    if (feof(inpointer))
+    {
+        if (buffer[0] != 0xff || buffer[1] != 0xd8 || buffer[2] != 0xff || (buffer[3] & 0xf0) != 0xe0)
+        {
             fclose(img);
             fclose(inpointer);
-        
-
+        }
+    }
     return 0;
 }
