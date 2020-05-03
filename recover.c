@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include<stdint.h>
+#include <stdint.h>
+#include <stdbool.h>
+
 #define NULL ((void*)0)
 typedef uint8_t byte;
 int main(int argc, char *argv[])
@@ -33,7 +35,7 @@ int main(int argc, char *argv[])
         fclose(outpointer);
     }
     
-    while (&free)
+    while (true)
     {    
         size_t alreadyread = fread(buffer, sizeof (byte), 512, inpointer);
         
