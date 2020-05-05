@@ -3,7 +3,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#define NULL ((void*)0)
+
 typedef uint8_t byte;
 
 
@@ -28,11 +28,11 @@ int main(int argc, char *argv[])
     
     byte buffer[512];
     
+    char filename[10];
+    FILE *img = NULL;
     
-    FILE *img;
-    char filename[9];
     
-    while (fread(&buffer, 512, 1, inpointer))
+    while (fread(buffer, 512, 1, inpointer))
     {    
         if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xf0) == 0xe0)
         {
@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
             
         if (i >= 1)
             {
-                fwrite(&buffer, 512, 1, inpointer);
+                fwrite(buffer, 512, 1, inpointer);
             }
     }
     fclose(img);
