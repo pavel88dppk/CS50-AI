@@ -3,7 +3,11 @@
 
 int main(int argc, char* argv[])
 {
-    // open memory card file
+     if (argc != 2)
+    {
+        fprintf(stderr, "Usage: recover infile\n");
+        return 1;
+    }
     FILE* inptr = fopen("card.raw", "r");
     if (inptr == NULL)
     {
@@ -16,7 +20,7 @@ int main(int argc, char* argv[])
     unsigned char buffer[512];
     
     // How many jpgs found
-    int counter = 0;
+    int i = 0;
     
     // Current filename and img
     char title[10];
@@ -26,31 +30,36 @@ int main(int argc, char* argv[])
     while(fread(&buffer, 512, 1, inptr)) 
     {
         // start of new jpg?
-        if (buffer[0] == 0xff && buffer[1] == 0xd8 && 
-            buffer[2] == 0xff && buffer[3] >> 4 == 0xe)
+        if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xf0) == 0xe0)
         {
             // Found jpg
-            counter++;
+            i++;
             
             // Close prev file (if any)
-            if (counter > 1)
+            if (i > 1)
             {
                 fclose(img);
             }
             
             // Open new file and write first buffer
-            sprintf(title, "%03d.jpg", counter - 1);
+            sprintf(title, "%03d.jpg", i - 1);
             img = fopen(title, "a");
         }
         
         // If currently writing to file, write buffer
-        if (counter > 0)
+        if (i >= 1)
         {
             fwrite(&buffer, 512, 1, img);    
         }
+        if (feof(inptr))
+        {
+            if (buffer[0] != 0xff && buffer[1] != 0xd8 && buffer[2] != 0xff && (buffer[3] & 0xf0) != 0xe0)
+            {
+                fclose(img);
+                fclose(inptr);
+            }
+            
+        }
     }
-    
-    // close any remaining files
-    fclose(img);
-    fclose(inptr);
+    return 0;
 }
