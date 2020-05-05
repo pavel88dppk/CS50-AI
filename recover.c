@@ -11,17 +11,18 @@ int main(int argc, char *argv[])
 {
     if (argc != 2)
     {
-        printf("Usage: ./recover infile\n");
+        fprintf(stderr, "Usage: ./recover infile\n");
         return 1;
     }
     
     char *infile = argv[1];
-    FILE *inpointer = fopen(argv[1], "r");
+    FILE *inpointer = fopen(infile, "r");
     int i = 0;
     
     if (inpointer == NULL)
     {
-        printf("Could not open");
+        fclose(inpointer);
+        fprintf(stderr, "Could not open");
         return 1;
     }
     
@@ -29,17 +30,10 @@ int main(int argc, char *argv[])
     
     
     FILE *img;
-    char* filename[9];
+    char* filename = NULL;
     
-    while (true)
+    while (fread(&buffer, 512, 1, inpointer))
     {    
-        size_t alreadyread = fread(buffer, sizeof(byte), 512, inpointer);
-        
-        if (alreadyread == 0 && feof(inpointer))
-        {
-            break;
-        }
-        
         if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xf0) == 0xe0)
         {
             i++;
@@ -47,13 +41,13 @@ int main(int argc, char *argv[])
             {
                 fclose(img);
             }
-            sprintf(filename, "%03i.jpg", i);
-            img = fopen (filename, "w");
+            sprintf(filename, "%03i.jpg", i - 1);
+            img = fopen (filename, "a");
         }
             
-        if (img != NULL)
+        if (i >= 1)
             {
-                fwrite(buffer, sizeof (byte), alreadyread, inpointer);
+                fwrite(&buffer, 512, 1, inpointer);
             }
     }
     if (feof(inpointer))
