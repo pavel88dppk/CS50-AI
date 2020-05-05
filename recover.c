@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
 
-typedef uint8_t byte;
 
 int main(int argc, char* argv[])
 {
@@ -27,7 +25,7 @@ int main(int argc, char* argv[])
     char filename[10];
     FILE* img;
     
-    while(fread(&buffer, sizeof(byte), 1, inptr)) 
+    while(fread(&buffer, 512, 1, inptr)) 
     {
         if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xf0) == 0xe0)
         {
@@ -44,7 +42,7 @@ int main(int argc, char* argv[])
         
         if (i >= 1)
         {
-            fwrite(&buffer, sizeof(byte), 1, img);    
+            fwrite(&buffer, 512, 1, img);    
         }
         if (feof(inptr))
         {
