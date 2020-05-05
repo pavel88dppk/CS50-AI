@@ -32,8 +32,10 @@ int main(int argc, char *argv[])
     FILE *img = NULL;
     
     
-    while (fread(buffer, 512, 1, inpointer))
-    {    
+    while (true)
+    {  
+        size_t read = (fread(buffer, sizeof(byte), 512, inpointer));
+        
         if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xf0) == 0xe0)
         {
             i++;
@@ -47,7 +49,7 @@ int main(int argc, char *argv[])
             
         if (i >= 1)
             {
-                fwrite(buffer, 512, 1, inpointer);
+                fwrite(buffer, sizeof(byte), read, inpointer);
             }
     }
     fclose(img);
