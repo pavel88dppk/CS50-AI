@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
             {
                 fclose(img);
             }
-            sprintf(filename, "%03i.jpg", i - 1);
+            sprintf(filename, "%03i.jpg", i);
             img = fopen (filename, "a");
         }
             
