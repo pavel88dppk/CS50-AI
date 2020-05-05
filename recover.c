@@ -13,8 +13,8 @@ int main(int argc, char* argv[])
     }
     
     int i = 0;
-    char *infile = argv[1];
-    FILE* inptr = fopen("infile", "r");
+    
+    FILE* inptr = fopen("card.raw", "r");
     
     if (inptr == NULL)
     {
