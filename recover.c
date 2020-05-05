@@ -6,7 +6,7 @@ int main(int argc, char* argv[])
 {
      if (argc != 2)
     {
-        fprintf(stderr, "Usage: ./recover infile\n");
+        fprintf(stderr, "Usage: recover infile\n");
         return 1;
     }
     
