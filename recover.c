@@ -12,7 +12,8 @@ int main(int argc, char* argv[])
     
     int i = 0;
     
-    FILE* inptr = fopen("card.raw", "r");
+    
+    FILE* inptr = fopen(argv[1], "r");
     
     if (inptr == NULL)
     {
