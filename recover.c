@@ -1,62 +1,56 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
-#include <stdbool.h>
 
-
-typedef uint8_t byte;
-
-
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
-    if (argc != 2)
+    // open memory card file
+    FILE* inptr = fopen("card.raw", "r");
+    if (inptr == NULL)
     {
-        fprintf(stderr, "Usage: ./recover infile\n");
+        fclose(inptr);
+        fprintf(stderr, "Could not open card.raw");
         return 1;
     }
-
-    char *infile = argv[1];
-    FILE *inpointer = fopen(infile, "r");
-    int i = 0;
-
-    if (inpointer == NULL)
+    
+    // Allocate memory for 512 byte chunks
+    unsigned char buffer[512];
+    
+    // How many jpgs found
+    int counter = 0;
+    
+    // Current filename and img
+    char title[10];
+    FILE* img;
+    
+    // Read until end of card
+    while(fread(&buffer, 512, 1, inptr)) 
     {
-        fclose(inpointer);
-        fprintf(stderr, "Could not open");
-        return 1;
-    }
-
-    byte buffer[512];
-
-    char filename[10];
-    FILE *img = NULL;
-
-
-    while (true)
-    {
-        size_t read = (fread(buffer, sizeof(byte), 512, inpointer));
-
-        if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xf0) == 0xe0)
+        // start of new jpg?
+        if (buffer[0] == 0xff && buffer[1] == 0xd8 && 
+            buffer[2] == 0xff && buffer[3] >> 4 == 0xe)
         {
-             if (read == 0 && feof(inpointer))
-            {
-                break;
-            }
-            i++;
-            if (i > 1)
+            // Found jpg
+            counter++;
+            
+            // Close prev file (if any)
+            if (counter > 1)
             {
                 fclose(img);
             }
-            sprintf(filename, "%03i.jpg", i - 1);
-            img = fopen (filename, "a");
+            
+            // Open new file and write first buffer
+            sprintf(title, "%03d.jpg", counter - 1);
+            img = fopen(title, "a");
         }
-
-        if (i >= 1)
-            {
-                fwrite(buffer, sizeof(byte), read, inpointer);
-            }
+        
+        // If currently writing to file, write buffer
+        if (counter > 0)
+        {
+            fwrite(&buffer, 512, 1, img);    
+        }
     }
+    
+    // close any remaining files
     fclose(img);
-    fclose(inpointer);
-    return 0;
+    fclose(inptr);
 }
