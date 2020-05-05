@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
     
     
     FILE *img;
-    char* filename = NULL;
+    char filename[9];
     
     while (fread(&buffer, 512, 1, inpointer))
     {    
