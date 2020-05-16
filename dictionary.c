@@ -61,15 +61,15 @@ bool load(const char *dictionary)
         memset(newword->word, '\0', sizeof(word));
 
 
-        //insert words into table
-        if (table[x])
-        {
-            //pass word from buffer to node
+        //pass word from buffer to node
             for (int i = 0; word[i]; i++)
             {
                 newword->word[i] = word[i];
             }
 
+        if (table[x] != NULL)
+        {
+            
             //insert node in the linked list
             newword->next = table[x];
             table[x] = newword;
@@ -79,12 +79,7 @@ bool load(const char *dictionary)
         {
             table[x] = newword;
 
-            //pass word from buffer to node
-            for (int i = 0; word[i]; i++)
-            {
-                newword->word[i] = word[i];
-            }
-
+            
             newword->next = NULL;
         }
 
