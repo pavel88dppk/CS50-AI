@@ -10,7 +10,7 @@
 #include "dictionary.h"
 
 
-const int N = 650;
+const unsigned int N = 650;
 
 // Represents a node in a hash table
 typedef struct node
@@ -26,10 +26,10 @@ node *table[N];
 //how many words were loaded to dictionary
 int count = 0;
 
-
+// Hashes word to a number between 0 and 25, inclusive, based on its first two letters
 unsigned int hash(const char *word)
 {
-    unsigned int onechar = (tolower(word[0])+1 - 'a')*26;
+    unsigned int onechar = (tolower(word[0]) + 1 - 'a') * 26;
     if (word[1] != 0)
     {
         onechar += (tolower(word[1]) + 1 - 'a');
@@ -41,9 +41,8 @@ unsigned int hash(const char *word)
 // Loads dictionary into memory, returning true if successful else false
 bool load(const char *dictionary)
 {
-
-    // Open dictionary
     FILE *file = fopen(dictionary, "r");
+    
     if (file == NULL)
     {
         return false;
@@ -53,24 +52,19 @@ bool load(const char *dictionary)
     while (fscanf(file, "%s", word) != EOF)
     {
         count ++;
-        //Get the word's x on a zero indexed abecedary
         int x = hash(word);
 
-        //memory for new word
+        //memory
         node *newword = malloc(sizeof(node));
         memset(newword->word, '\0', sizeof(word));
 
-
-        //pass word from buffer to node
-            for (int i = 0; word[i]; i++)
-            {
-                newword->word[i] = word[i];
-            }
+        for (int i = 0; word[i]; i++)
+        {
+            newword->word[i] = word[i];
+        }
 
         if (table[x] != NULL)
         {
-            
-            //insert node in the linked list
             newword->next = table[x];
             table[x] = newword;
 
@@ -78,11 +72,8 @@ bool load(const char *dictionary)
         else
         {
             table[x] = newword;
-
-            
             newword->next = NULL;
         }
-
     }
     fclose(file);
     return true;
@@ -97,7 +88,6 @@ unsigned int size(void)
 // Returns true if word is in dictionary else false
 bool check(const char *word)
 {
-
     char tmpword[LENGTH + 1] = {'\0'};
 
     for (int i = 0; word[i]; i++)
@@ -107,7 +97,7 @@ bool check(const char *word)
     int x = hash(tmpword);
     node *cursor = table[x];
 
-    while(cursor != NULL)
+    while (cursor != NULL)
     {
         for (int i = 0; i <= LENGTH; i++)
         {
