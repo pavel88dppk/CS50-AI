@@ -53,18 +53,13 @@ bool load(const char *dictionary)
     while (fscanf(file, "%s", word) != EOF)
     {
         count ++;
-        //Get the word's x on a zero indexed abecedary
         int x = hash(word);
 
         //memory for new word
         node *newword = malloc(sizeof(node));
-        memset(newword->word, '\0', sizeof(word));
-
-
         //insert words into table
-        if (table[x])
+        if (table[x] != NULL)
         {
-            //pass word from buffer to node
             for (int i = 0; word[i]; i++)
             {
                 newword->word[i] = word[i];
