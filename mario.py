@@ -5,13 +5,13 @@ while True:
         break
 
 for s in range(n):
-    for u in range (n):
+    for u in range(n):
         if n - (s + u) > 1:
-            print (" ", end = "") 
+            print(" ", end="") 
         else:
-            print ("#", end = "")
-    print ("  ", end = "")
-    for t in range (n):
+            print("#", end="")
+    print("  ", end="")
+    for t in range(n):
         if n - (s + t) <= 1:
-            print ("#", end = "")
+            print("#", end="")
     print()
