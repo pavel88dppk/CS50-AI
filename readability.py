@@ -16,16 +16,16 @@ for q in range(length):
     if (f >= 65 and f <= 90) or (f >= 97 and f <= 122) or f == 39:
         wc += 0
     elif (f == 45):
-        wc += 0;
+        wc += 0
         f = ord(s[N - 1])
         if (f >= 65 and f <= 90) or (f >= 97 and f <= 122):
-            wc += 0;
+            wc += 0
         else:
-            wc += 1;
+            wc += 1
     else:    
-            f = ord(s[N - 1])
-            if (f >= 65 and f <= 90) or (f >= 97 and f <= 122):
-                wc += 1
+        f = ord(s[N - 1])
+        if (f >= 65 and f <= 90) or (f >= 97 and f <= 122):
+            wc += 1
     if f == 32:
         f = ord(s[N - 1])
         if (f >= 97 and f <= 122) or (f >= 65 and f <= 90):
