@@ -1,0 +1,1 @@
+SELECT name FROM(SELECT * FROM people JOIN (SELECT * FROM ratings JOIN directors ON ratings.movie_id = directors.movie_id) ON id = person_id WHERE rating >= 9);
