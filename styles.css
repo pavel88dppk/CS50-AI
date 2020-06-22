@@ -1,0 +1,75 @@
+h1
+{
+    font: 500px "Times New Roman";
+    text-align: center;
+    font-size: 500%;
+    border-bottom:10px solid #000;
+    border-top:10px solid #000
+}
+p
+{
+    text-align: justify;
+
+    margin: 50px 50px 10px 50px;
+}
+h2
+{
+    text-align: justify;
+    margin: 50px 50px 10px 50px;
+}
+.btn btn-dark
+{
+    margin: 50px 50px 10px 50px;
+}
+.text
+{
+    font: 500px "Times New Roman";
+    font-size: 200%;
+}
+.Koenigsegg
+{
+    display: block;
+    margin: 50px auto 20px auto;
+}
+h3
+{
+    margin: 50px 50px 20px 50px;
+}
+
+.batn
+{
+    margin: 50px 50px 20px auto;
+}
+.p1
+{
+    margin: 100px 50px 20px 50px;
+    font-size: 50%;
+}
+::first-letter
+{
+    font-weight: bold;
+}
+#bigtitle
+{
+    font-weight: bold;
+    font-style: oblique;
+}
+
+*
+{
+    background-color: white;
+}
+.small
+    {
+        width: 30%;
+        height: auto;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+.lit
+    {
+        display: block;
+        margin-left: 500px;
+        margin-right: auto;
+    }
