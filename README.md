@@ -1,5 +1,5 @@
 I really enjoyed this problem set as it was an awesome way to practice the work with tensorflow. I tried numerous combinations. The best result was achieved when I added two duplicates of the first convolution layer, I achieved accuracy of 97.84 %. Though not always were the results ideal. When, for example I decreased the sizes of hidden layers. THe downside is the time it took it to evaluate the practice tests, it might be a problem in my computer though. The best results were achieved when I raised the dropout to about 0.40.
-
+https://youtu.be/i4OZ98Fds8U
 
 Epoch 1/10
 500/500 [==============================] - 18s 34ms/step - loss: 3.9847 - accuracy: 0.2884
