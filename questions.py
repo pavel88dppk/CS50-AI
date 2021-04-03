@@ -168,15 +168,5 @@ def top_sentences(query, sentences, idfs, n):
             return ret
 
 
-def word_density(query, sentence):
-    counter = 0
-    sentence_l = len(sentence)
-
-    for word in query:
-        if word in sentence:
-            counter += sentence.count(word)
-    return (counter/sentence_l)
-
-
 if __name__ == "__main__":
     main()
